@@ -17,19 +17,28 @@ for i in range(3):
         x += 100
     y += 100
 
+player_turn = 2
+
 running = True
 while running:
+    cursor = pygame.mouse.get_pos()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONUP:
             for square in squares:
                 square.checkCursor(cursor)
-                square.changeCondition()
+                square.changeCondition(player_turn)
+            print(player_turn)
+            if player_turn == 1:
+                player_turn = 2
+            else:
+                player_turn = 1
+
 
     screen.fill((255, 255, 255))
-    cursor = pygame.mouse.get_pos()
+
 
     for square in squares:
         square.draw(screen)
