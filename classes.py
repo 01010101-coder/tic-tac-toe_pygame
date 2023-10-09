@@ -1,9 +1,10 @@
 import pygame
 
 class Square:
-    def __init__(self, x, y):
+    def __init__(self, x, y, cx, cy):
         self.x = x
         self.y = y
+        self.coordinates = [cx, cy]
         self.height = 100
         self.width = 100
         self.color = (0, 0, 0)
@@ -14,7 +15,7 @@ class Square:
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, pygame.Rect(self.x, self.y, self.height, self.width), 1)
         if self.condition == 1:
-            pygame.draw.circle(screen, (0, 255, 0), ( self.x + round(self.width/2), self.y + round(self.height/2)), 30, 1)
+            pygame.draw.circle(screen, (0, 255, 0), (self.x + round(self.width/2), self.y + round(self.height/2)), 30, 1)
         if self.condition == 2:
             pygame.draw.line(screen, (0, 0, 255), [self.x+20, self.y+20],
                              [self.x+self.width-20, self.y+self.height-20], 1)
