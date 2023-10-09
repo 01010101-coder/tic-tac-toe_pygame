@@ -23,11 +23,13 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            for square in squares:
+                square.checkCursor(cursor)
+                square.changeCondition()
 
     screen.fill((255, 255, 255))
     cursor = pygame.mouse.get_pos()
-
-    pygame.draw.rect(screen, (0, 0, 0))
 
     for square in squares:
         square.draw(screen)

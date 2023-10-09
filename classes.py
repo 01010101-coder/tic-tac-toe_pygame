@@ -8,16 +8,28 @@ class Square:
         self.width = 100
         self.color = (0, 0, 0)
 
+        self.isCursorOn = [False, False]
+        self.condition = 0
+
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, pygame.Rect(self.x, self.y, self.height, self.width), 1)
+        if self.condition == 1:
+            pygame.draw.circle(screen, (0, 255, 0), ( self.x + round(self.width/2), self.y + round(self.height/2)), 30, 1)
 
     def checkCursor(self, cursor):
-        isCursorOn = [False, False]
+        self.isCursorOn = [False, False]
         if cursor[0] < self.x + self.width and cursor[0] > self.x:
-            isCursorOn[0] = True
+            self.isCursorOn[0] = True
         if cursor[1] < self.y + self.height and cursor[1] > self.y:
-            isCursorOn[1] = True
-        if isCursorOn[0] and isCursorOn[1]:
+            self.isCursorOn[1] = True
+        if self.isCursorOn[0] and self.isCursorOn[1]:
             self.color = (255, 0, 0)
         else:
             self.color = (0, 0, 0)
+
+    def changeCondition(self):
+        if self.condition != 0:
+            return 0;
+        if self.isCursorOn[0] and self.isCursorOn[1]:
+            self.condition = 1
+            print('Done it')
