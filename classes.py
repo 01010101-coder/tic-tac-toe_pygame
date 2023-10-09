@@ -14,9 +14,9 @@ class Square:
 
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, pygame.Rect(self.x, self.y, self.height, self.width), 1)
-        if self.condition == 1:
-            pygame.draw.circle(screen, (0, 255, 0), (self.x + round(self.width/2), self.y + round(self.height/2)), 30, 1)
         if self.condition == 2:
+            pygame.draw.circle(screen, (0, 255, 0), (self.x + round(self.width/2), self.y + round(self.height/2)), 30, 1)
+        if self.condition == 1:
             pygame.draw.line(screen, (0, 0, 255), [self.x+20, self.y+20],
                              [self.x+self.width-20, self.y+self.height-20], 1)
 
@@ -40,8 +40,3 @@ class Square:
                 self.condition = 1
             elif player_turn == 2:
                 self.condition = 2
-
-
-def checkVictory(squares, player_turn):
-    for square in squares:
-        pass
