@@ -1,5 +1,3 @@
-import pygame.display
-
 from classes import *
 
 pygame.init()
@@ -53,9 +51,9 @@ while running:
                     square.condition = 0
                 isGame = True
                 player_win = 0
+                player_turn = 1
 
     screen.fill((255, 255, 255))
-
 
     for square in squares:
         square.draw(screen)
@@ -69,7 +67,7 @@ while running:
     elif player_win == 2:
         screen.blit(secondPlayer_win, (170, 50))
 
-    if time%900 == 0 and isGame:
+    if time % 300 == 0 and isGame:
         field = []
         for square in squares:
             field.append([square.coordinates, square.condition])
