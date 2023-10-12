@@ -6,15 +6,16 @@ class Square:
         self.x = x
         self.y = y
         self.coordinates = [cx, cy]
-        self.height = 100
-        self.width = 100
-        self.color = (0, 0, 0)
+        self.height = 101
+        self.width = 101
+        self.color = (255, 0, 0)
 
         self.isCursorOn = [False, False]
         self.condition = 0
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, pygame.Rect(self.x, self.y, self.height, self.width), 1)
+        if self.isCursorOn[0] and self.isCursorOn[1]:
+            pygame.draw.rect(screen, self.color, pygame.Rect(self.x, self.y, self.height, self.width), 1)
         if self.condition == 2:
             pygame.draw.circle(screen, (0, 255, 0), (self.x + round(self.width/2), self.y + round(self.height/2)), 30, 1)
         if self.condition == 1:
@@ -30,10 +31,6 @@ class Square:
             self.isCursorOn[0] = True
         if cursor[1] < self.y + self.height and cursor[1] > self.y:
             self.isCursorOn[1] = True
-        if self.isCursorOn[0] and self.isCursorOn[1]:
-            self.color = (255, 0, 0)
-        else:
-            self.color = (0, 0, 0)
 
     def changeCondition(self, player_turn):
         if self.isCursorOn[0] and self.isCursorOn[1]:

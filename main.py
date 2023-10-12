@@ -27,7 +27,7 @@ for i in range(3):
         x += 100
     y += 100
 
-player_turn = 2
+player_turn = 1
 player_win = 0
 
 isGame = True
@@ -55,6 +55,19 @@ while running:
                 player_turn = 1
 
     screen.fill((255, 255, 255))
+
+    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(100, 100, 301, 301), 1)
+    for i in range(2):
+        pygame.draw.line(screen, (0, 0, 0), [100 + (i+1) * 100, 100], [100 + (i+1) * 100, 400], 1)
+    for i in range(2):
+        pygame.draw.line(screen, (0, 0, 0), [100, 100 + (i+1) * 100], [400, 100 + (i+1) * 100], 1)
+
+    y = 100
+    for i in range(3):
+        x = 100
+        for j in range(3):
+            x += 100
+        y += 100
 
     for square in squares:
         square.draw(screen)
