@@ -8,9 +8,10 @@ font = pygame.font.SysFont('timesnewromano', 24)
 but_reset = font.render('Reset', True, (0, 0, 255))
 firstPlayer_win = font.render('First player wins!', True, (0, 0, 0))
 secondPlayer_win = font.render('Second player wins!', True, (0, 0, 0))
+draw_win = font.render('Draw', True, (0, 0, 0))
 
 screen = pygame.display.set_mode([500, 600])
-fps = 30
+fps = 60
 clock = pygame.time.Clock()
 time = 0
 
@@ -66,6 +67,8 @@ while running:
         screen.blit(firstPlayer_win, (170, 50))
     elif player_win == 2:
         screen.blit(secondPlayer_win, (170, 50))
+    elif player_win == 3:
+        screen.blit(draw_win, (215, 50))
 
     if time % 300 == 0 and isGame:
         field = []
@@ -97,6 +100,15 @@ while running:
                 player_win = 1
             elif field[2][1] == 2:
                 player_win = 2
+        if player_win == 0:
+            i = 0
+            for square in field:
+                if square[1] == 0:
+                    break
+                if i == 8:
+                    isGame = False
+                    player_win = 3
+                i += 1
 
     pygame.display.flip()
 
